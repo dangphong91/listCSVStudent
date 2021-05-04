@@ -11,9 +11,9 @@ public class Student implements Comparable<Student> {
     int score4;
     double average;
 
-    public Student(String name, int code, int age, String gender) {
+    public Student(String name, int id, int age, String gender) {
         this.name = name;
-        this.id = code;
+        this.id = id;
         this.age = age;
         this.gender = gender;
         this.score1 = 0;
