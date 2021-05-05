@@ -183,6 +183,7 @@ public class StudentManager {
                     score1 = Integer.parseInt(sc.nextLine());
                     importScore1(name,score1);
                     System.out.println("Next Import ? Y/N");
+                    editScore:
                     while (true) {
                         yesNo = sc.nextLine();
                         switch (yesNo) {
@@ -206,21 +207,21 @@ public class StudentManager {
                                                         System.out.println("Score 4:");
                                                         score4 = Integer.parseInt(sc.nextLine());
                                                         importScore4(name, score4);
-                                                        return;
+                                                        break editScore;
                                                     case "N":
-                                                        return;
+                                                        break editScore;
                                                     default:
                                                         System.out.println("Not now...");
                                                 }
                                             }
                                         case "N":
-                                            return;
+                                            break editScore;
                                         default:
                                             System.out.println("Not now...");
                                     }
                                 }
                             case "N":
-                                return;
+                                break editScore;
                             default:
                                 System.out.println("Not now...");
 
