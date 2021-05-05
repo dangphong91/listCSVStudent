@@ -126,6 +126,11 @@ public class StudentManager {
         int id;
         int age;
         String gender;
+        int score1;
+        int score2;
+        int score3;
+        int score4;
+        String yesNo;
         while (true) {
             menu();
             System.out.println("Choice:");
@@ -171,7 +176,56 @@ public class StudentManager {
                     removeStudent(id);
                     break;
                 case "5" :
-                    break;
+                    System.out.println("Import Score:");
+                    System.out.println("Name:");
+                    name = sc.nextLine();
+                    System.out.println("Score 1:");
+                    score1 = Integer.parseInt(sc.nextLine());
+                    importScore1(name,score1);
+                    System.out.println("Next Import ? Y/N");
+                    while (true) {
+                        yesNo = sc.nextLine();
+                        switch (yesNo) {
+                            case "Y":
+                                System.out.println("Score 2:");
+                                score2 = Integer.parseInt(sc.nextLine());
+                                importScore2(name,score2);
+                                System.out.println("Next Import ? Y/N");
+                                while (true) {
+                                    yesNo = sc.nextLine();
+                                    switch (yesNo) {
+                                        case "Y":
+                                            System.out.println("Score 3:");
+                                            score3 = Integer.parseInt(sc.nextLine());
+                                            importScore3(name, score3);
+                                            System.out.println("Next Import ? Y/N");
+                                            while (true) {
+                                                yesNo = sc.nextLine();
+                                                switch (yesNo) {
+                                                    case "Y":
+                                                        System.out.println("Score 4:");
+                                                        score4 = Integer.parseInt(sc.nextLine());
+                                                        importScore4(name, score4);
+                                                        return;
+                                                    case "N":
+                                                        return;
+                                                    default:
+                                                        System.out.println("Not now...");
+                                                }
+                                            }
+                                        case "N":
+                                            return;
+                                        default:
+                                            System.out.println("Not now...");
+                                    }
+                                }
+                            case "N":
+                                return;
+                            default:
+                                System.out.println("Not now...");
+
+                        }
+                    }
                 case "6" :
                     System.out.println("Sort Student:");
                     sortStudent();
