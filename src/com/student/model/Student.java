@@ -2,18 +2,18 @@ package com.student.model;
 
 public class Student implements Comparable<Student> {
     String name;
-    int id;
+    int code;
     int age;
     String gender;
-    int score1;
-    int score2;
-    int score3;
-    int score4;
+    double score1;
+    double score2;
+    double score3;
+    double score4;
     double average;
 
     public Student(String name, int id, int age, String gender) {
         this.name = name;
-        this.id = id;
+        this.code = id;
         this.age = age;
         this.gender = gender;
         this.score1 = 0;
@@ -30,54 +30,62 @@ public class Student implements Comparable<Student> {
         this.name = name;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getAge() {
-        return age;
+    public int getCode() {
+        return code;
     }
 
     public void setAge(int age) {
         this.age = age;
     }
 
-    public String getGender() {
-        return gender;
-    }
-
     public void setGender(String gender) {
         this.gender = gender;
     }
 
-    public void setScore1(int score1) {
+    public void setScore1(double score1) {
         this.score1 = score1;
     }
 
-    public void setScore2(int score2) {
+    public void setScore2(double score2) {
         this.score2 = score2;
     }
 
-    public void setScore3(int score3) {
+    public void setScore3(double score3) {
         this.score3 = score3;
     }
 
-    public void setScore4(int score4) {
+    public void setScore4(double score4) {
         this.score4 = score4;
     }
 
     public double getAverage() {
-        this.average  = (double) (score1 + score2 + score3 * 2 + score4 * 3)/ 7;
-        return average;
+        if (score1 == 0 || score2 == 0 || score3 == 0 || score4 == 0) {
+            return 0;
+        } else {
+            this.average  = (score1 + score2 + score3 * 2 + score4 * 3)/ 7;
+            return average;
+        }
+    }
+
+    public String getClassified() {
+        if (getAverage() <= 10 && getAverage() >= 8.5) {
+            return "Great";
+        } else if (getAverage() >= 7) {
+            return "Rather";
+        } else if (getAverage() >= 5.5) {
+            return "Medium";
+        } else if (getAverage() >= 4) {
+            return "Weak";
+        } else if (getAverage() > 0) {
+            return "Least";
+        } else {
+            return "Not yet";
+        }
     }
 
     @Override
     public String toString() {
-        return name + "," + id + "," + age + "," + gender + "," + score1 + "," + score2 + "," + score3 + "," + score4 + "," + getAverage() + "\n";
+        return name + "," + code + "," + age + "," + gender + "," + score1 + "," + score2 + "," + score3 + "," + score4 + "," + getAverage() + "," + getClassified() + "\n";
     }
 
     @Override

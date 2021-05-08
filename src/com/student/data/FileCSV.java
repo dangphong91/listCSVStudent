@@ -6,9 +6,9 @@ import java.io.*;
 import java.util.*;
 
 public class FileCSV {
-    private File file;
+    private final File file;
     private  ArrayList<Student> list;
-    private final String HEADER = "Name,Code,Age,Gender,Score1,Score2,Score3,Score4,Average";
+    private final String HEADER = "Name,Code,Age,Gender,Score1,Score2,Score3,Score4,Average,Classified";
 
     public FileCSV(File file) {
         this.file = file;
@@ -18,7 +18,7 @@ public class FileCSV {
         return list;
     }
 
-    public ArrayList<Student> read(){
+    public void read(){
         if (!file.exists()) {
             try {
                 file.createNewFile();
@@ -27,7 +27,7 @@ public class FileCSV {
             }
         }
         try {
-            list = new ArrayList<Student>();
+            list = new ArrayList<>();
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
             String line;
@@ -36,12 +36,13 @@ public class FileCSV {
                     continue;
                 }
                 String[] st = line.split(",");
+                System.out.printf("|    %-10s|%10s    |%6s    |     %-7s|%9s     |%9s     |%9s     |%9s     |%-17s|    %-10s|", (Object[]) st);
+                System.out.println();
                 Student student = new Student(st[0], Integer.parseInt(st[1]), Integer.parseInt(st[2]), st[3]);
-                student.setScore1(Integer.parseInt(st[4]));
-                student.setScore2(Integer.parseInt(st[5]));
-                student.setScore3(Integer.parseInt(st[6]));
-                student.setScore4(Integer.parseInt(st[7]));
-                System.out.print(student.toString());
+                student.setScore1(Double.parseDouble(st[4]));
+                student.setScore2(Double.parseDouble(st[5]));
+                student.setScore3(Double.parseDouble(st[6]));
+                student.setScore4(Double.parseDouble(st[7]));
                 list.add(student);
             }
             br.close();
@@ -49,7 +50,6 @@ public class FileCSV {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return list;
     }
 
     public void write() {
